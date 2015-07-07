@@ -68,6 +68,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <link rel="import" href="bower_components/paper-fab/paper-fab.html">
             <link rel="import" href="bower_components/paper-input/paper-input.html">
             <link rel="import" href="bower_components/paper-button/paper-button.html">
+            <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
 
             <style is="custom-style">
                 .paper-header.wide {
@@ -113,6 +114,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     color: black;
                 }
                 
+                .step-header {
+                    float: top;
+                    margin -0px -10px 0px -10px;
+                }
+                
                 .step-number {
                     float: top;
                     margin: -60px 20px 20px 20px;
@@ -147,31 +153,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        when custom properties allow it */
                 
                 .blue .content {
-                    background: linear-gradient(white, #b3e5fc);
+                    /*background: linear-gradient(white, #b3e5fc);*/
+                    background: white;
                 }
                 
                 .red .content {
-                    background: linear-gradient(white, #ffcdd2);
+                    /*background: linear-gradient(white, #ffcdd2);*/
+                    background: white;
                 }
                 
                 .orange .content {
-                    background: linear-gradient(white, #ffecb3);
+                    /*background: linear-gradient(white, #ffecb3);*/
+                    background: white;
                 }
                 
                 .green .content {
-                    background: linear-gradient(white, #c8e6c9);
+                    /*background: linear-gradient(white, #c8e6c9);*/
+                    background: white;
                 }
                 
                 .cyan .content {
-                    background: linear-gradient(white, #b2ebf2);
+                    /*background: linear-gradient(white, #b2ebf2);*/
+                    background: white;
                 }
                 
                 .lime .content {
-                    background: linear-gradient(white, #f0f4c3);
+                    /*background: linear-gradient(white, #f0f4c3);*/
+                    background: white;
                 }
                 
                 .pink .content {
-                    background: linear-gradient(white, #f8bbd0);
+                    /*background: linear-gradient(white, #f8bbd0);*/
+                    background: white;
                 }
                 
                 ul {
@@ -249,6 +262,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     --iron-icon-width: 48px;
                 }
                 
+                paper-icon-button {
+                    margin-left: 30px;
+                    display: block;
+                    width: 24px;
+                    text-align: center;
+                }
+                
+                paper-icon-button.grey:hover {
+                    background: #D0D0D0;
+                    border-radius: 50%;
+                }
+                
+                paper-icon-button.grey {}
+                
                 .avatar {
                     display: inline-block;
                     width: 40px;
@@ -279,10 +306,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
                 
                 .card {
+                    /*height: 2000px;*/
                     position: relative;
                     display: inline-block;
                     width: 300px;
-                    /*height: 240px;*/
+                    /*height: 200px;*/
+                    margin: 20px 20px 20px 20px;
                     vertical-align: top;
                     background-color: #fff;
                     box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
@@ -330,11 +359,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     /*opacity: 0.2;*/
                     /*background: grey;*/
                     display: flex;
-                    justify-content: space-between;
-                    padding-top: 12px;
-                    padding-left: 12px;
-                    padding-right: 12px;
-                    padding-bottom: 0px;
+                    justify-content: flex-end;
+                    /*padding-top: 12px;*/
+                    /*padding-left: 12px;*/
+                    /*padding-right: 12px;*/
+                    /*padding-bottom: 12px;*/
                 }
                 
                 .header-icon {
@@ -424,19 +453,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <section>
         <h2>Bolierplates</h2>
 
-        <paper-header-panel mode="waterfall-tall" tall-class="medium-tall" class="blue height=1500">
-
+        <paper-header-panel mode="waterfall-tall" class="blue">
             <div class="paper-header">
                 <div class="header-item">
-
-                    <iron-icon class="big-icon" icon="hardware:keyboard-arrow-left"></iron-icon>
-                    Marketing
-                    <paper-ripple></paper-ripple>
-
+                    <div>
+                        <iron-icon class="big-icon" icon="hardware:keyboard-arrow-left"></iron-icon>
+                        Marketing
+                        <paper-ripple></paper-ripple>
+                    </div>
                     <div class="header-item-icons">
-                        <iron-icon class="header-icon" title="Open" icon="open-in-new"></iron-icon>
-                        <iron-icon class="header-icon" title="Refresh" icon="refresh"></iron-icon>
-                        <iron-icon class="header-icon" title="Delete" icon="delete"></iron-icon>
+                        <paper-icon-button class="grey" alt="Open" icon="open-in-new"></paper-icon-button>
+                        <paper-icon-button class="grey" alt="Refresh" icon="refresh"></paper-icon-button>
+                        <paper-icon-button class="grey" alt="Delete" icon="delete"></paper-icon-button>
                     </div>
                 </div>
             </div>
@@ -453,64 +481,66 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 </paper-item-body>
                                 <iron-icon class="bolierplate-icon" title="Open" icon="open-in-new"></iron-icon>
                             </paper-icon-item>
-
                             <paper-ripple></paper-ripple>
                         </div>
                     </li>
                     <li>
                         <div class="item-boilerplates">
-                            <paper-item>
+                            <paper-icon-item>
                                 <paper-item-body two-line>
                                     <div>Recipes</div>
                                     <div secondary>Jan 17, 2014</div>
-                                    <iron-icon class="bolierplate-icon" title="Open" icon="open-in-new"></iron-icon>
                                 </paper-item-body>
-
-                            </paper-item>
+                                <iron-icon class="bolierplate-icon" title="Open" icon="open-in-new"></iron-icon>
+                            </paper-icon-item>
                             <paper-ripple></paper-ripple>
                         </div>
                     </li>
                     <li>
                         <div class="item-boilerplates">
-                            <paper-item>
+                            <paper-icon-item>
                                 <paper-item-body two-line>
                                     <div>Recipes</div>
                                     <div secondary>Jan 17, 2014</div>
                                 </paper-item-body>
-                            </paper-item>
+                                <iron-icon class="bolierplate-icon" title="Open" icon="open-in-new"></iron-icon>
+                            </paper-icon-item>
                             <paper-ripple></paper-ripple>
                         </div>
                     </li>
                     <li>
                         <div class="item-boilerplates">
-                            <paper-item>
+                            <paper-icon-item>
                                 <paper-item-body two-line>
                                     <div>Recipes</div>
                                     <div secondary>Jan 17, 2014</div>
                                 </paper-item-body>
-                            </paper-item>
+                                <iron-icon class="bolierplate-icon" title="Open" icon="open-in-new"></iron-icon>
+                            </paper-icon-item>
                             <paper-ripple></paper-ripple>
                         </div>
                     </li>
                     <li>
                         <div class="item-boilerplates">
-                            <paper-item>
+                            <paper-icon-item>
                                 <paper-item-body two-line>
                                     <div>Recipes</div>
                                     <div secondary>Jan 17, 2014</div>
                                 </paper-item-body>
-                            </paper-item>
+                                <iron-icon class="bolierplate-icon" title="Open" icon="open-in-new"></iron-icon>
+                            </paper-icon-item>
                             <paper-ripple></paper-ripple>
                         </div>
                     </li>
                     <li>
                         <div class="item-boilerplates">
-                            <paper-item>
+                            <paper-icon-item>
                                 <paper-item-body two-line>
                                     <div>Recipes</div>
                                     <div secondary>Jan 17, 2014</div>
                                 </paper-item-body>
-                            </paper-item>
+                                <iron-icon class="bolierplate-icon" title="Open" icon="open-in-new"></iron-icon>
+                            </paper-icon-item>
                             <paper-ripple></paper-ripple>
                         </div>
                     </li>
@@ -522,57 +552,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
     <paper-header-panel mode="waterfall-tall" tall-class="medium-tall" class="blue">
-        <div class="paper-header wide">
+        <div class="paper-header">
             <iron-icon class="big-icon" icon="hardware:keyboard-arrow-left"></iron-icon>
             Add
+            <div secondary>
+                Three steps to add a Boilerplate Set
+            </div>
             <paper-ripple></paper-ripple>
         </div>
-        <div>
-            <p style="height: 20px;"></p>
-        </div>
-        <div class="card">
-            <div class="step">
-                <paper-fab mini class="green" icon="bolierplate:one">
-                </paper-fab>
+
+        <div class="content">
+            <div class="card">
+                <div class="step">
+                    <paper-fab mini class="green" icon="bolierplate:one">
+                    </paper-fab>
+                </div>
+                <p>
+                    If you already have an existing Boilerplate Set sheet then go to step 2.
+                    <br>
+                    <br> Otherwise, create a Bolierplate Set sheet and populate it with links to Bolierplate docs.
+                    <br>
+                    <br>
+                    <paper-button tabindex="1" class="green">Create</paper-button>
+                </p>
             </div>
-            <p>
-                If you already have an existing Bolierplate Set Sheet then go to step 2.
-                <br>
-                <br> Create a Bolierplate Set Sheet and populate it with links to Bolierplate Docs.
-                <br>
-                <br>
-                <paper-button tabindex="0" class="green">Create</paper-button>
-            </p>
-        </div>
-        <div>
-            <p style="height: 20px;"></p>
-        </div>
-        <div class="card">
-            <div class="step">
-                <paper-fab mini class="blue" icon="bolierplate:two"></paper-fab>
+            <div class="card">
+                <div class="step">
+                    <paper-fab mini class="blue" icon="bolierplate:two"></paper-fab>
+                </div>
+                <p>
+                    Select an existing Bolierplate Set sheet.
+                    <br>
+                    <br>
+                    <paper-button tabindex="2" class="blue">Select</paper-button>
+                </p>
             </div>
-            <p>
-                Select an existing Bolierplate Set Sheet.
-                <br>
-                <br>
-                <paper-button tabindex="0" class="blue">Select</paper-button>
-            </p>
-        </div>
-        <div>
-            <p style="height: 20px;"></p>
-        </div>
-        <div class="card">
-            <div class="step">
-                <paper-fab mini class="red" icon="bolierplate:three"></paper-fab>
+            <div class="card">
+                <div class="step">
+                    <paper-fab mini class="red" icon="bolierplate:three"></paper-fab>
+                </div>
+                <p>
+                    Give the Bolierplate Set a name and add it.
+                    <br>
+                    <paper-input label="Bolierplate Set Name"></paper-input>
+                    <br>
+                    <paper-button tabindex="3" class="red">Add</paper-button>
+                    <br>
+                </p>
             </div>
-            <p>
-                Provide the Bolierplate Set a name and add it.
-                <br>
-                <paper-input class="margin=10px" label="Bolierplate Set Name"></paper-input>
-                <br>
-                <paper-button tabindex="0" class="red">Add</paper-button>
-                <br>
-            </p>
         </div>
     </paper-header-panel>
 </body>
