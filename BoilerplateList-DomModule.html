@@ -24,6 +24,7 @@
 <link rel="import" href="bower_components/paper-button/paper-button.html">
 <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="bower_components/iron-selector/iron-selector.html">
 
 <dom-module id="boilerplate-list">
 
@@ -44,41 +45,41 @@
       box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
     }
     
-            .big-icon {
-            --iron-icon-height: 48px;
-            --iron-icon-width: 48px;
-        }
-                
-        .blue {
-            background-color: var(--paper-light-blue-300);
-        }
-        
+    .big-icon {
+      --iron-icon-height: 48px;
+      --iron-icon-width: 48px;
+    }
+    
+    .blue {
+      background-color: var(--paper-light-blue-300);
+    }
+    
+    .iron-selected {
+      background: #C8C8C8;
+    }
+    
+    paper-ripple {
+      color: grey;
+    }
   </style>
 
   <template>
 
     <div class="card">
-      <div class="item">
-        <paper-icon-item>
-          <paper-item-body two-line>
-            <div>Marketing</div>
-            <div secondary>Jan 9, 2014</div>
-          </paper-item-body>
-          <iron-icon class="big-icon" icon="hardware:keyboard-arrow-right"></iron-icon>
-        </paper-icon-item>
-        <paper-ripple></paper-ripple>
-      </div>
-      <div class="item">
-        <paper-icon-item>
-          <paper-item-body two-line>
-            <div>Recipes</div>
-
-            <div secondary>Jan 17, 2014</div>
-          </paper-item-body>
-          <iron-icon class="big-icon" icon="hardware:keyboard-arrow-right"></iron-icon>
-        </paper-icon-item>
-        <paper-ripple></paper-ripple>
-      </div>
+      <iron-selector>
+        <template is="dom-repeat" items="{{boilerplateSets}}">
+          <div class="item" name='{{item.name}}'>
+            <paper-icon-item>
+              <paper-item-body two-line>
+                <div>{{item.name}}</div>
+                <div secondary>{{item.description}}</div>
+              </paper-item-body>
+              <iron-icon class="big-icon" icon="hardware:keyboard-arrow-right"></iron-icon>
+            </paper-icon-item>
+            <paper-ripple></paper-ripple>
+          </div>
+        </template>
+      </iron-selector>
       <div class="item">
         <paper-icon-item>
           <paper-item-body two-line>
@@ -93,7 +94,17 @@
 
   <script>
     Polymer({
-      is: 'boilerplate-list'
+      is: 'boilerplate-list',
+      ready: function() {
+        this.boilerplateSets = [{
+          name: 'CVs',
+          description: 'Bolierplates'
+        }, {
+          name: 'Addresses',
+          description: 'Boilerplates'
+        }, ];
+      },
+
     });
   </script>
 
