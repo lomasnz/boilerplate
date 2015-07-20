@@ -1,0 +1,208 @@
+<script src="bower_components//webcomponentsjs/webcomponents-lite.js"></script>
+
+<link rel="import" href="bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="bower_components/iron-icons/hardware-icons.html">
+
+<link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
+
+<link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
+
+<link rel="import" href="bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="bower_components/paper-item/paper-item.html">
+<link rel="import" href="bower_components/paper-item/paper-item-body.html">
+
+<link rel="import" href="bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="bower_components/paper-styles/demo-pages.html">
+
+<link rel="import" href="bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="bower_components/paper-header-panel/paper-header-panel.html">
+
+<link rel="import" href="bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="bower_components/paper-input/paper-input.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="bower_components/iron-pages/iron-pages.html">
+
+<iron-iconset-svg name="bolierplate" size="24">
+    <svg>
+        <defs>
+            <g id="insert">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+            </g>
+        </defs>
+    </svg>
+</iron-iconset-svg>
+
+<dom-module id="boilerplate-add">
+
+    <style>
+        .paper-header.wide {
+            width: 100px;
+        }
+        
+        .blue {
+            background-color: var(--paper-light-blue-300);
+        }
+        
+        paper-header-panel {
+            float: left;
+            width: 350px;
+            height: 500px;
+            margin: 12px;
+            @apply(--shadow-elevation-2dp);
+        }
+        
+        .paper-header {
+            height: 60px;
+            font-size: 16px;
+            line-height: 60px;
+            padding: 0 10px;
+            color: white;
+            transition: height 0.2s;
+        }
+        
+        .paper-header.tall {
+            height: 120px;
+        }
+        
+        .paper-header.medium-tall {
+            height: 100px;
+            line-height: 50px;
+        }
+        
+        paper-icon-button.grey-hover:hover {
+            background: linear-gradient(#D0D0D0, #ffecb3);
+            border-radius: 50%;
+        }
+        
+        .light-grey {
+            background: light-grey;
+        }
+        
+        .card-boilerplates {
+            height: 2000px;
+            position: relative;
+            box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+        }
+        
+        .item-boilerplates {
+            position: relative;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+            margin-left: 0px;
+        }
+        
+        .insert-card {
+            width: 350px;
+            height: 160px;
+            margin: 0px;
+            padding: 0px;
+            background-color: var(--paper-light-blue-300);
+        }
+        
+        .list {
+            padding-top: 12px;
+            background-color: white;
+            display: inline-block;
+            width: 240px;
+            height: 228px;
+            margin: 12px;
+            @apply(--shadow-elevation-2dp);
+        }
+        
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .white {
+            background: white;
+        }
+        
+        .big-icon {
+            --iron-icon-height: 32px;
+            --iron-icon-width: 32px;
+        }
+    </style>
+
+    <template>
+        <table>
+            <tr>
+                <td>
+                    <paper-header-panel mode="waterfall-tall" class="blue" style="margin: 0; padding: 0;">
+                        <div class="paper-header">
+                            <div class="header-item">
+                                <div>
+                                    <core-item tag="close"></core-item>
+                                    <paper-icon-button class="grey-hover big-icon" icon="icons:close"></paper-icon-button>
+                                    Marketing
+                                    <br>
+                                </div>
+                                <div>
+                                    <paper-icon-button class="grey-hover" alt="Open" icon="open-in-new"></paper-icon-button>
+                                    <paper-icon-button class="grey-hover" alt="Refresh" icon="refresh"></paper-icon-button>
+                                    <paper-icon-button class="grey-hover" alt="Delete" icon="delete"></paper-icon-button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-boilerplates white">
+                            <ul>
+                                <template is="dom-repeat" items="{{boilerplates}}">
+                                    <li>
+                                        <div class="item-boilerplates">
+                                            <paper-item>
+                                                <paper-item-body two-line>
+                                                    <div>{{item.name}}</div>
+                                                    <div secondary>{{item.description}}</div>
+                                                </paper-item-body>
+                                            </paper-item>
+                                            <paper-ripple></paper-ripple>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </paper-header-panel>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="insert-card">
+                        <table >
+                            <tr style="display: flex; justify-content: flex-end;">
+                                <td>
+                                    <paper-fab mini class="light-grey" icon="icons:open-in-new" style="margin: -50px 20px 0px 0px"></paper-fab>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <paper-fab class="red" icon="bolierplate:insert" style="margin: 0px 0px 0px 0px"></paper-fab>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </template>
+
+    <script>
+        Polymer({
+            is: 'boilerplate-add',
+            ready: function() {
+                this.boilerplates = [{
+                    name: 'CV',
+                    description: 'Bolierplate'
+                }, {
+                    name: 'Addresses',
+                    description: 'Boilerplate'
+                }, ];
+            }
+        });
+    </script>
+
+</dom-module>
