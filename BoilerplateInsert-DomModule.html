@@ -23,13 +23,23 @@
 <link rel="import" href="bower_components/paper-input/paper-input.html">
 <link rel="import" href="bower_components/paper-button/paper-button.html">
 <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="bower_components/paper-toast/paper-toast.html">
+<!--<link rel="import" href="bower_components/iron-pages/iron-pages.html">-->
 
-<iron-iconset-svg name="bolierplate" size="24">
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
+<link rel="import" href="bower_components/neon-animation/neon-animation-behavior.html">
+<link rel="import" href="bower_components/neon-animation/web-animations.html">
+<link rel="import" href="bower_components/neon-animation/animations/slide-from-left-animation.html">
+<link rel="import" href="bower_components/neon-animation/animations/slide-from-right-animation.html">
+<link rel="import" href="bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="bower_components/iron-iconset-svg/iron-iconset-svg.html">
+
+<iron-iconset-svg name="boilerplate" size="24">
     <svg>
         <defs>
-            <g id="insert">
-                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+            <g id="insertLeft" transform="rotate(180, 12.5, 12)">
+                <path d="m2.01,21l20.99,-9l-20.99,-9l-0.01,7l15,2l-15,2l0.01,7z" />
             </g>
         </defs>
     </svg>
@@ -82,9 +92,10 @@
         }
         
         .card-boilerplates {
-            height: 2000px;
+            /*height: 2000px;*/
+            height: 100%;
             position: relative;
-            box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+            /*box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);*/
         }
         
         .item-boilerplates {
@@ -95,7 +106,7 @@
         
         .insert-card {
             width: 350px;
-            height: 160px;
+            height: 80px;
             margin: 0px;
             padding: 0px;
             background-color: var(--paper-light-blue-300);
@@ -125,32 +136,44 @@
             --iron-icon-height: 32px;
             --iron-icon-width: 32px;
         }
+        
+        .iron-selected {
+            background-color: #C8C8C8;
+        }
+        
+        paper-ripple {
+            color: grey;
+        }
+        
+        .open-button {
+            background-color: #C8C8C8;
+        }
     </style>
 
     <template>
-        <table>
-            <tr>
-                <td>
-                    <paper-header-panel mode="waterfall-tall" class="blue" style="margin: 0; padding: 0;">
-                        <div class="paper-header">
-                            <div class="header-item">
-                                <div>
-                                    <core-item tag="close"></core-item>
-                                    <paper-icon-button class="grey-hover big-icon" icon="icons:close"></paper-icon-button>
-                                    Marketing
-                                    <br>
-                                </div>
-                                <div>
-                                    <paper-icon-button class="grey-hover" alt="Open" icon="open-in-new"></paper-icon-button>
-                                    <paper-icon-button class="grey-hover" alt="Refresh" icon="refresh"></paper-icon-button>
-                                    <paper-icon-button class="grey-hover" alt="Delete" icon="delete"></paper-icon-button>
+        <div id="insert">
+            <table>
+                <tr>
+                    <td>
+                        <paper-header-panel mode="waterfall-tall" class="blue" style="margin: 0; padding: 0;">
+                            <div class="paper-header">
+                                <div class="header-item">
+                                    <div>
+                                        <core-item tag="close"></core-item>
+                                        <paper-icon-button id="button" class="grey-hover big-icon" on-click="_Close" icon="icons:close"></paper-icon-button>
+                                        {{item.name}}
+                                        <br>
+                                    </div>
+                                    <div>
+                                        <paper-icon-button class="grey-hover" alt="Open" on-click="_OpenSet" icon="open-in-new"></paper-icon-button>
+                                        <paper-icon-button class="grey-hover" alt="Refresh" on-click="_Refresh" icon="refresh"></paper-icon-button>
+                                        <paper-icon-button class="grey-hover" alt="Delete" on-click="_Delete" icon="delete"></paper-icon-button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-boilerplates white">
-                            <ul>
-                                <template is="dom-repeat" items="{{boilerplates}}">
-                                    <li>
+                            <div class="card-boilerplates white">
+                                <iron-selector id="listSelection" attr-for-selected="name" on-tap="itemSelected">
+                                    <template is="dom-repeat" items="{{boilerplates}}">
                                         <div class="item-boilerplates">
                                             <paper-item>
                                                 <paper-item-body two-line>
@@ -160,49 +183,150 @@
                                             </paper-item>
                                             <paper-ripple></paper-ripple>
                                         </div>
-                                    </li>
-                                </template>
-                            </ul>
+                                    </template>
+                                </iron-selector>
+                            </div>
+                        </paper-header-panel>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="insert-card" style="display: flex; justify-content: flex-end; text- align: center;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <paper-fab mini class="open-button" icon="icons:open-in-new" on-click="_OpenBoilerplate" style="margin-top: -60px"></paper-fab>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <paper-fab class="red" icon="boilerplate:insertLeft" on-click="_Insert" "margin-top: -40px"></paper-fab>
+                                        <p></p>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
-                    </paper-header-panel>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="insert-card">
-                        <table>
-                            <tr style="display: flex; justify-content: flex-end;">
-                                <td>
-                                    <paper-fab mini class="light-grey" icon="icons:open-in-new" style="margin: -50px 20px 0px 0px"></paper-fab>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <paper-fab class="red" icon="bolierplate:insert" style="margin: 0px 0px 0px 0px"></paper-fab>
-                                </td>
-                            </tr>
-
-                        </table>
-                    </div>
-                </td>
-            </tr>
-        </table>
-
+                    </td>
+                </tr>
+            </table>
+            <paper-toast id="toast" duration="10000">
+                <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" onclick="document.querySelector('#toast').hide();">DISSMISS</span>
+            </paper-toast>
+        </div>
     </template>
 
-    <script>
-        Polymer({
-            is: 'boilerplate-insert',
-            ready: function() {
-                this.boilerplates = [{
-                    name: 'My CV',
-                    description: 'Bolierplate'
-                }, {
-                    name: 'Joe CV',
-                    description: 'Boilerplate'
-                }, ];
-            }
-        });
-    </script>
-
 </dom-module>
+
+<script>
+    Polymer({
+        is: 'boilerplate-insert',
+        ready: function() {
+            this.boilerplates = [{
+                name: 'My CV',
+                description: 'Boilerplate'
+            }, {
+                name: 'Jain CV',
+                description: 'Boilerplate'
+            }, {
+                name: 'Joe CV',
+                description: 'Boilerplate'
+            }, {
+                name: 'Jeff CV',
+                description: 'Boilerplate'
+            }, {
+                name: 'Jack CV',
+                description: 'Boilerplate'
+            }, {
+                name: 'Jill CV',
+                description: 'Boilerplate'
+            }, {
+                name: 'Jon CV',
+                description: 'Boilerplate'
+            }, {
+                name: 'Jo CV',
+                description: 'Boilerplate'
+            }, {
+                name: 'John CV',
+                description: 'Boilerplate'
+            }, {
+                name: 'Jedd CV',
+                description: 'Boilerplate'
+            }, ];
+        },
+        behaviors: [
+            Polymer.NeonAnimationBehavior
+        ],
+
+        properties: {
+
+            sharedElements: {
+                type: Object,
+                value: function() {
+                    return {
+                        'hero': this.$.insert
+                    };
+                }
+            },
+
+            animationConfig: {
+                type: Object,
+                value: function() {
+                    return {
+                        'entry': [{
+                            name: 'slide-from-right',
+                            node: this.$.button
+                        }, {
+                            name: 'hero-animation',
+                            id: 'hero',
+                            toPage: this
+                        }],
+
+                        'exit': [{
+                            name: 'slide-from-right-left',
+                            node: this.$.button,
+                            timing: 1
+                        }, {
+                            name: 'slide-from-left',
+                            node: this.$.insert,
+                            transformOrigin: '50% 50%',
+                            axis: 'y',
+                            timing: 1
+                        }]
+
+                    }
+                }
+            }
+
+        },
+        _Close: function() {
+            console.log('close');
+            this.fire('close');
+        },
+        _OpenSet: function() {
+            console.log('open set');
+            // this.fire('open');
+        },
+        _Refresh: function() {
+            console.log('refresh');
+            // this.fire('refresh');
+        },
+        _Delete: function() {
+            console.log('delete');
+            // this.fire('refresh');
+        },
+        _Insert: function() {
+            this.$.toast.text = "Boilerplate inserted.";
+            this.$.toast.show();
+            console.log('insert');
+            // this.fire('refresh');
+        },
+        _OpenBoilerplate: function() {
+            console.log('open boilerplate');
+            // this.fire('refresh');
+        },
+        itemSelected: function() {
+            console.log('select');
+            this.fire('select');
+        },
+    });
+</script>

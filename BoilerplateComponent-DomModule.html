@@ -1,0 +1,95 @@
+<script src="bower_components//webcomponentsjs/webcomponents-lite.js"></script>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+<link rel="import" href="BoilerplateList-DomModule.html">
+<link rel="import" href="BoilerplateInsert-DomModule.html">
+<link rel="import" href="BoilerplateAdd-DomModule.html">
+
+<link rel="import" href="bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="bower_components/iron-icons/hardware-icons.html">
+
+<link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="bower_components/paper-item/paper-item.html">
+<link rel="import" href="bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="bower_components/paper-styles/demo-pages.html">
+
+<link rel="import" href="bower_components/paper-ripple/paper-ripple.html">
+<link rel="import" href="bower_components/paper-header-panel/paper-header-panel.html">
+
+<link rel="import" href="bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="bower_components/paper-input/paper-input.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+<!--<link rel="import" href="bower_components/iron-pages/iron-pages.html">-->
+<link rel="import" href="bower_components/neon-animation/neon-animated-pages.html">
+<link rel="import" href="bower_components/neon-animation/neon-animatable.html">
+<link rel="import" href="bower_components/neon-animation/animations/slide-from-left-animation.html">
+<link rel="import" href="bower_components/neon-animation/animations/slide-from-right-animation.html">
+<link rel="import" href="bower_components/neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="bower_components/neon-animation/neon-animated-pages.html">
+<link rel="import" href="bower_components/neon-animation/neon-animations.html">
+<link rel="import" href="bower_components/neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="bower_components/polymer/polymer.html">
+
+<dom-module id="boilerplate-component">
+
+    <body>
+        <template>
+            <neon-animated-pages id="pages" selected="0" animateInitialSelection=true entry-animation="slide-from-left-animation" exit-animation="slide-from-right-animation">
+                <boilerplate-list on-select="_onSelect" on-add="_onAdd"></boilerplate-list>
+                <boilerplate-insert on-close="_onClose"></boilerplate-insert>
+                <boilerplate-add on-close="_onClose"></boilerplate-add>
+            </neon-animated-pages>
+        </template>
+    </body>
+
+</dom-module>
+
+<script>
+    Polymer({
+                is: 'boilerplate-component',
+                behaviors: [
+                    Polymer.NeonAnimationRunnerBehavior
+                ],
+                _onClose: function() {
+                    this.$.pages.selected = 0;
+                },
+                _onSelect: function(e, detail, sender) {
+                        console.log('item e :' + e);
+                        console.log('item detail :' + detail);
+                        console.log('item detail :' + detail.item);
+                        this.$.pages.selected = 1;
+                    },
+                    _onAdd: function() {
+                        console.log("adding");
+                        this.$.pages.selected = 2;
+                    },
+                    listeners: {
+                        'entry-animation-start': 'onEntryStart',
+                        'entry-animation-finish': 'onEntryFinish',
+                        'exit-animation-start': 'onExitStart',
+                        'exit-animation-finish': 'onExitFinish'
+                    },
+
+                    onEntryStart: function(e) {
+                        console.log(this.title + ' entry animation starts');
+                    },
+                    onEntryFinish: function(e) {
+                        console.log(this.title + ' entry animation finished');
+                    },
+                    onExitStart: function(e) {
+                        console.log(this.title + ' exit animation starts');
+                    },
+                    onExitFinish: function(e) {
+                        console.log(this.title + ' exit animation finished');
+                    }
+                });
+</script>

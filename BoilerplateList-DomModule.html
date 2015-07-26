@@ -23,8 +23,17 @@
 <link rel="import" href="bower_components/paper-input/paper-input.html">
 <link rel="import" href="bower_components/paper-button/paper-button.html">
 <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="bower_components/iron-pages/iron-pages.html">
+<!--<link rel="import" href="bower_components/iron-pages/iron-pages.html">-->
 <link rel="import" href="bower_components/iron-selector/iron-selector.html">
+
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
+<link rel="import" href="bower_components/neon-animation/neon-animation-behavior.html">
+<link rel="import" href="bower_components/neon-animation/web-animations.html">
+<link rel="import" href="bower_components/paper-styles/paper-styles.html">
+
+<link rel="import" href="bower_components/neon-animation/animations/slide-from-left-animation.html">
+<link rel="import" href="bower_components/neon-animation/animations/slide-from-right-animation.html">
 
 <dom-module id="boilerplate-list">
 
@@ -33,7 +42,7 @@
       float: left;
       position: relative;
       display: inline-block;
-      width: 300px;
+      width: 400px;
       margin: 20px 20px 20px 20px;
       vertical-align: top;
       background-color: #fff;
@@ -65,11 +74,11 @@
 
   <template>
 
-    <div class="card">
-      <iron-selector>
+    <div class="card" id="list">
+      <iron-selector id="listSelection" attr-for-selected="{{name}}" on-tap="itemSelected">
         <template is="dom-repeat" items="{{boilerplateSets}}">
           <div class="item" name='{{item.name}}'>
-            <paper-icon-item>
+            <paper-icon-item >
               <paper-item-body two-line>
                 <div>{{item.name}}</div>
                 <div secondary>{{item.description}}</div>
@@ -86,26 +95,76 @@
             <div>Add</div>
             <div secondary>Add a new set of Boilerplates</div>
           </paper-item-body>
-          <paper-fab mini class="blue" icon="add"></paper-fab>
+          <paper-fab mini class="blue" icon="add" on-tap="add" ></paper-fab>
         </paper-icon-item>
       </div>
     </div>
   </template>
-
-  <script>
-    Polymer({
-      is: 'boilerplate-list',
-      ready: function() {
-        this.boilerplateSets = [{
-          name: 'CVs',
-          description: 'Bolierplates'
-        }, {
-          name: 'Addresses',
-          description: 'Boilerplates'
-        }, ];
-      },
-
-    });
-  </script>
-
 </dom-module>
+
+<script>
+  Polymer({
+    is: 'boilerplate-list',
+    ready: function() {
+      this.boilerplateSets = [{
+        name: 'CVs',
+        description: 'Bolierplates'
+      }, {
+        name: 'Addresses',
+        description: 'Boilerplates'
+      }, ];
+    },
+    behaviors: [
+      Polymer.NeonAnimatableBehavior
+    ],
+    itemSelected: function() {
+      var _selected = this.$.listSelection.selectedItem;
+      console.log('fire select for ' + _selected);
+      this.fire('select',{item: _selected});
+    },
+    add: function() {
+      this.$.listSelection.selected = -1;
+      console.log('add');
+      this.fire('add');
+    },
+    properties: {
+      sharedElements: {
+        type: Object,
+        value: function() {
+          return {
+            'hero': this.$.main
+          };
+        }
+      },
+      animationConfig: {
+        type: Object,
+        value: function() {
+          return {
+            'entry': [{
+              name: 'slide-from-left',
+              node: this.$.button
+            }, {
+              name: 'slide-from-left',
+              id: 'hero',
+              toPage: this
+            }],
+
+            'exit': [{
+              name: 'slide-from-left',
+              node: this.$.button,
+              timing: 1
+            }, {
+              name: 'slide-from-left',
+              node: this.$.main,
+              timing: 1,
+              transformOrigin: '50% 50%',
+              axis: 'y'
+            }]
+
+          }
+        }
+      }
+    }
+
+  });
+</script>
