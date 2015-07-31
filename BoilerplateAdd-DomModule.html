@@ -1,4 +1,5 @@
-<script src="bower_components//webcomponentsjs/webcomponents-lite.js"></script>
+<script src="bower_components//webcomponentsjs/webcomponents-lite.js">
+</script>
 
 <link rel="import" href="bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="bower_components/iron-icons/iron-icons.html">
@@ -33,6 +34,10 @@
 <link rel="import" href="bower_components/neon-animation/web-animations.html">
 <link rel="import" href="bower_components/neon-animation/animations/slide-from-left-animation.html">
 <link rel="import" href="bower_components/neon-animation/animations/slide-from-right-animation.html">
+<link rel="import" href="bower_components/neon-animation/animations/slide-from-left-animation.html">
+<link rel="import" href="bower_components/neon-animation/animations/slide-from-right-animation.html">
+
+
 
 <iron-iconset-svg name="bolierplate" size="24">
     <svg>
@@ -354,42 +359,42 @@
             Polymer.NeonAnimationBehavior
         ],
         properties: {
-            sharedElements: {
-                type: Object,
-                value: function() {
-                    return {
-                        'hero': this.$.head
-                    };
-                }
-            },
-            animationConfig: {
-                type: Object,
-                value: function() {
-                    return {
-                        'entry': [{
-                            name: 'slide-from-right',
-                            node: this.$.button
-                        }, {
-                            name: 'hero-animation',
-                            id: 'hero',
-                            toPage: this
-                        }],
+        //     sharedElements: {
+        //         type: Object,
+        //         value: function() {
+        //             return {
+        //                 'hero': this.$.head
+        //             };
+        //         }
+        //     },
+        //     animationConfig: {
+        //         type: Object,
+        //         value: function() {
+        //             return {
+        //                 'entry': [{
+        //                     name: 'slide-from-right',
+        //                     node: this.$.button
+        //                 }, {
+        //                     name: 'hero-animation',
+        //                     id: 'hero',
+        //                     toPage: this
+        //                 }],
 
-                        'exit': [{
-                            name: 'slide-from-right-left',
-                            node: this.$.button,
-                            timing: 1
-                        }, {
-                            name: 'slide-from-left',
-                            node: this.$.head,
-                            transformOrigin: '50% 50%',
-                            axis: 'y',
-                            timing: 1
-                        }]
-                    }
-                }
-            }
-        },
+        //                 'exit': [{
+        //                     name: 'slide-from-right-left',
+        //                     node: this.$.button,
+        //                     timing: 1
+        //                 }, {
+        //                     name: 'slide-from-left',
+        //                     node: this.$.head,
+        //                     transformOrigin: '50% 50%',
+        //                     axis: 'y',
+        //                     timing: 1
+        //                 }]
+        //             }
+        //         }
+        //     }
+         },
         _Close: function() {
             console.log('close');
             this.fire('close');
@@ -408,3 +413,4 @@
         }
     });
 </script>
+   

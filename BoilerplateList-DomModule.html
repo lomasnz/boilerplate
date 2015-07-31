@@ -1,4 +1,5 @@
-<script src="bower_components//webcomponentsjs/webcomponents-lite.js"></script>
+<script src="bower_components//webcomponentsjs/webcomponents-lite.js">
+</script>
 
 <link rel="import" href="bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="bower_components/iron-icons/iron-icons.html">
@@ -29,14 +30,16 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
 <link rel="import" href="bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
 <link rel="import" href="bower_components/neon-animation/neon-animation-behavior.html">
+
 <link rel="import" href="bower_components/neon-animation/web-animations.html">
 <link rel="import" href="bower_components/paper-styles/paper-styles.html">
 
 <link rel="import" href="bower_components/neon-animation/animations/slide-from-left-animation.html">
 <link rel="import" href="bower_components/neon-animation/animations/slide-from-right-animation.html">
 
-<dom-module id="boilerplate-list">
+<script type="text/javascript" src="BoilerplateJS.js"></script>
 
+<dom-module id="boilerplate-list">
   <style>
     .card {
       float: left;
@@ -71,14 +74,12 @@
       color: grey;
     }
   </style>
-
-  <template>
-
+  <template id="list-template">
     <div class="card" id="list">
-      <iron-selector id="listSelection" attr-for-selected="{{name}}" on-tap="itemSelected">
-        <template is="dom-repeat" items="{{boilerplateSets}}">
-          <div class="item" name='{{item.name}}'>
-            <paper-icon-item >
+      <iron-selector>
+        <template is="dom-repeat" id="listSelection" items="{{boilerplateSets}}">
+          <div class="item" name='{{item.name}}' on-tap="_itemSelected">
+            <paper-icon-item>
               <paper-item-body two-line>
                 <div>{{item.name}}</div>
                 <div secondary>{{item.description}}</div>
@@ -95,7 +96,7 @@
             <div>Add</div>
             <div secondary>Add a new set of Boilerplates</div>
           </paper-item-body>
-          <paper-fab mini class="blue" icon="add" on-tap="add" ></paper-fab>
+          <paper-fab mini class="blue" icon="add" on-tap="add"></paper-fab>
         </paper-icon-item>
       </div>
     </div>
@@ -106,21 +107,22 @@
   Polymer({
     is: 'boilerplate-list',
     ready: function() {
-      this.boilerplateSets = [{
-        name: 'CVs',
-        description: 'Bolierplates'
-      }, {
-        name: 'Addresses',
-        description: 'Boilerplates'
-      }, ];
+       this.boilerplateSets = _retriveBoilerplateSets();
     },
     behaviors: [
       Polymer.NeonAnimatableBehavior
     ],
-    itemSelected: function() {
-      var _selected = this.$.listSelection.selectedItem;
+    _itemSelected: function(e) {
+      console.log("selected e.target:" + e.target);
+
+      var _selected = this.$.listSelection.itemForElement(e.target);
       console.log('fire select for ' + _selected);
-      this.fire('select',{item: _selected});
+      var _name = _selected.name;
+
+      console.log('name :' + _name);
+      this.fire('select', {
+        name: _name
+      });
     },
     add: function() {
       this.$.listSelection.selected = -1;
@@ -128,42 +130,42 @@
       this.fire('add');
     },
     properties: {
-      sharedElements: {
-        type: Object,
-        value: function() {
-          return {
-            'hero': this.$.main
-          };
-        }
-      },
-      animationConfig: {
-        type: Object,
-        value: function() {
-          return {
-            'entry': [{
-              name: 'slide-from-left',
-              node: this.$.button
-            }, {
-              name: 'slide-from-left',
-              id: 'hero',
-              toPage: this
-            }],
+      // sharedElements: {
+      //   type: Object,
+      //   value: function() {
+      //     return {
+      //       'hero': this.$.main
+      //     };
+      //   }
+      // },
+      // animationConfig: {
+      //   type: Object,
+      //   value: function() {
+      //     return {
+      //       'entry': [{
+      //         name: 'slide-from-left',
+      //         node: this.$.button
+      //       }, {
+      //         name: 'slide-from-left',
+      //         id: 'hero',
+      //         toPage: this
+      //       }],
 
-            'exit': [{
-              name: 'slide-from-left',
-              node: this.$.button,
-              timing: 1
-            }, {
-              name: 'slide-from-left',
-              node: this.$.main,
-              timing: 1,
-              transformOrigin: '50% 50%',
-              axis: 'y'
-            }]
+      //       'exit': [{
+      //         name: 'slide-from-left',
+      //         node: this.$.button,
+      //         timing: 1
+      //       }, {
+      //         name: 'slide-from-left',
+      //         node: this.$.main,
+      //         timing: 1,
+      //         transformOrigin: '50% 50%',
+      //         axis: 'y'
+      //       }]
 
-          }
-        }
-      }
+      //     }
+        // }
+      // }
     }
 
   });

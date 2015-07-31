@@ -1,4 +1,5 @@
-<script src="bower_components//webcomponentsjs/webcomponents-lite.js"></script>
+<script src="bower_components//webcomponentsjs/webcomponents-lite.js">
+</script>
 
 <link rel="import" href="bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="bower_components/iron-icons/iron-icons.html">
@@ -34,6 +35,8 @@
 <link rel="import" href="bower_components/neon-animation/animations/slide-from-right-animation.html">
 <link rel="import" href="bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="bower_components/iron-iconset-svg/iron-iconset-svg.html">
+<script type="text/javascript" src="BoilerplateJS.js"></script>
+
 
 <iron-iconset-svg name="boilerplate" size="24">
     <svg>
@@ -46,7 +49,6 @@
 </iron-iconset-svg>
 
 <dom-module id="boilerplate-insert">
-
     <style>
         .paper-header.wide {
             width: 100px;
@@ -60,6 +62,7 @@
             float: left;
             width: 350px;
             height: 500px;
+            /*height: 100%;*/
             margin: 12px;
             @apply(--shadow-elevation-2dp);
         }
@@ -115,21 +118,23 @@
         .list {
             padding-top: 12px;
             background-color: white;
+            color: white;
             display: inline-block;
             width: 240px;
-            height: 228px;
+            height: 500%;
+            /*height: 228px;*/
             margin: 12px;
             @apply(--shadow-elevation-2dp);
         }
         
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
+        /*ul {*/
+        /*    list-style-type: none;*/
+        /*    margin: 0;*/
+        /*    padding: 0;*/
+        /*}*/
         
         .white {
-            background: white;
+            background-color: white;
         }
         
         .big-icon {
@@ -149,7 +154,6 @@
             background-color: #C8C8C8;
         }
     </style>
-
     <template>
         <div id="insert">
             <table>
@@ -161,7 +165,7 @@
                                     <div>
                                         <core-item tag="close"></core-item>
                                         <paper-icon-button id="button" class="grey-hover big-icon" on-click="_Close" icon="icons:close"></paper-icon-button>
-                                        {{item.name}}
+                                        {{name}}
                                         <br>
                                     </div>
                                     <div>
@@ -172,9 +176,9 @@
                                 </div>
                             </div>
                             <div class="card-boilerplates white">
-                                <iron-selector id="listSelection" attr-for-selected="name" on-tap="itemSelected">
-                                    <template is="dom-repeat" items="{{boilerplates}}">
-                                        <div class="item-boilerplates">
+                                <iron-selector attr-for-selected="name">
+                                    <template is="dom-repeat" id="listSelection" items="{{boilerplates}}">
+                                        <div class="item-boilerplates" on-tap="_itemSelected">
                                             <paper-item>
                                                 <paper-item-body two-line>
                                                     <div>{{item.name}}</div>
@@ -191,20 +195,10 @@
                 </tr>
                 <tr>
                     <td>
-                        <div class="insert-card" style="display: flex; justify-content: flex-end; text- align: center;">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <paper-fab mini class="open-button" icon="icons:open-in-new" on-click="_OpenBoilerplate" style="margin-top: -60px"></paper-fab>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <paper-fab class="red" icon="boilerplate:insertLeft" on-click="_Insert" "margin-top: -40px"></paper-fab>
-                                        <p></p>
-                                    </td>
-                                </tr>
-                            </table>
+                        <div class="insert-card" style="display: flex; justify-content: flex-end; text-align: center;">
+                            <paper-item>{{selectedBoilerplate}}</paper-item> 
+                            <paper-fab mini class="open-button" icon="icons:open-in-new" on-click="_OpenBoilerplate" style="margin-top: -60px"></paper-fab>
+                            <paper-fab class="red" icon="boilerplate:insertLeft" on-click="_Insert" style="display: flex; justify-content: flex-end; text-align: center;margin-right: 40px"></paper-fab>
                         </div>
                     </td>
                 </tr>
@@ -220,38 +214,10 @@
 <script>
     Polymer({
         is: 'boilerplate-insert',
+        name: String,
         ready: function() {
-            this.boilerplates = [{
-                name: 'My CV',
-                description: 'Boilerplate'
-            }, {
-                name: 'Jain CV',
-                description: 'Boilerplate'
-            }, {
-                name: 'Joe CV',
-                description: 'Boilerplate'
-            }, {
-                name: 'Jeff CV',
-                description: 'Boilerplate'
-            }, {
-                name: 'Jack CV',
-                description: 'Boilerplate'
-            }, {
-                name: 'Jill CV',
-                description: 'Boilerplate'
-            }, {
-                name: 'Jon CV',
-                description: 'Boilerplate'
-            }, {
-                name: 'Jo CV',
-                description: 'Boilerplate'
-            }, {
-                name: 'John CV',
-                description: 'Boilerplate'
-            }, {
-                name: 'Jedd CV',
-                description: 'Boilerplate'
-            }, ];
+            this.boilerplates = _retreieveBoilerplatesForSet('');
+            this.selectedBoilerplate = "Select";
         },
         behaviors: [
             Polymer.NeonAnimationBehavior
@@ -259,45 +225,46 @@
 
         properties: {
 
-            sharedElements: {
-                type: Object,
-                value: function() {
-                    return {
-                        'hero': this.$.insert
-                    };
-                }
-            },
+            // sharedElements: {
+            //     type: Object,
+            //     value: function() {
+            //         return {
+            //             'hero': this.$.insert
+            //         };
+            //     }
+            // },
 
-            animationConfig: {
-                type: Object,
-                value: function() {
-                    return {
-                        'entry': [{
-                            name: 'slide-from-right',
-                            node: this.$.button
-                        }, {
-                            name: 'hero-animation',
-                            id: 'hero',
-                            toPage: this
-                        }],
+            // animationConfig: {
+            //     type: Object,
+            //     value: function() {
+            //         return {
+            //             'entry': [{
+            //                 name: 'slide-from-right',
+            //                 node: this.$.button
+            //             }, {
+            //                 name: 'hero-animation',
+            //                 id: 'hero',
+            //                 toPage: this
+            //             }],
 
-                        'exit': [{
-                            name: 'slide-from-right-left',
-                            node: this.$.button,
-                            timing: 1
-                        }, {
-                            name: 'slide-from-left',
-                            node: this.$.insert,
-                            transformOrigin: '50% 50%',
-                            axis: 'y',
-                            timing: 1
-                        }]
+            //             'exit': [{
+            //                 name: 'slide-from-right-left',
+            //                 node: this.$.button,
+            //                 timing: 1
+            //             }, {
+            //                 name: 'slide-from-left',
+            //                 node: this.$.insert,
+            //                 transformOrigin: '50% 50%',
+            //                 axis: 'y',
+            //                 timing: 1
+            //             }]
 
-                    }
-                }
-            }
+            //         }
+            //     }
+            // }
 
         },
+
         _Close: function() {
             console.log('close');
             this.fire('close');
@@ -315,7 +282,7 @@
             // this.fire('refresh');
         },
         _Insert: function() {
-            this.$.toast.text = "Boilerplate inserted.";
+            this.$.toast.text = "Boilerplate " + this.selectedBoilerplate +" inserted.";
             this.$.toast.show();
             console.log('insert');
             // this.fire('refresh');
@@ -324,9 +291,10 @@
             console.log('open boilerplate');
             // this.fire('refresh');
         },
-        itemSelected: function() {
-            console.log('select');
-            this.fire('select');
+        _itemSelected: function(e,detail) {
+            var _selected = this.$.listSelection.itemForElement(e.target).name;
+            console.log(_selected);
+            this.selectedBoilerplate = _selected;
         },
     });
 </script>
