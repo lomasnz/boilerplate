@@ -1,0 +1,30 @@
+{
+	"Version": "2012-10-17",
+	"Id": "PolicyByIpGoogleDev-1",
+	"Statement": [
+		{
+			"Sid": "WellingtonIPAllow",
+			"Effect": "Allow",
+			"Principal": "*",
+			"Action": "s3:*",
+			"Resource": "arn:aws:s3:::google-development/*",
+			"Condition": {
+				"IpAddress": {
+					"aws:SourceIp": "202.9.88.250/32"
+				}
+			}
+		},
+		{
+			"Sid": "AucklandIPAllow",
+			"Effect": "Allow",
+			"Principal": "*",
+			"Action": "s3:*",
+			"Resource": "arn:aws:s3:::google-development/*",
+			"Condition": {
+				"IpAddress": {
+					"aws:SourceIp": "124.157.111.58/32"
+				}
+			}
+		}
+	]
+}

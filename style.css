@@ -1,0 +1,289 @@
+    /* list */
+    
+    .item {
+      position: relative;
+      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    }
+    
+    .blue {
+      background-color: var(--paper-light-blue-300);
+    }
+    
+    .iron-selected {
+      background: #C8C8C8;
+    }
+    
+    paper-ripple {
+      color: grey;
+    }
+    
+    /* add */
+      p {
+            font: calibri;
+            size: 10px;
+            margin: 12px;
+            color: black;
+        }
+        
+        .paper-header {
+            height: 60px;
+            font-size: 16px;
+            line-height: 60px;
+            padding: 0 10px;
+            color: white;
+            transition: height 0.2s;
+        }
+        
+        .paper-header.tall {
+            height: 120px;
+        }
+        
+        .paper-header.medium-tall {
+            height: 100px;
+            line-height: 50px;
+        }
+        
+        .content {
+            /*height: 2000px;*/
+            height: 100%;
+        }
+        
+        .cover {
+            margin: 20px;
+        }
+        
+        .step {
+            float: top;
+            margin: -10px 10px 10px 10px;
+            color: black;
+        }
+        
+        .step-header {
+            float: top;
+            margin: -0px -10px 0px -10px;
+        }
+        
+        .step-number {
+            float: top;
+            margin: -60px 20px 20px 20px;
+            color: black;
+            text: roboto;
+            alignment-adjust: center;
+            size: 12;
+            z-index: 10 !important;
+        }
+        
+        .white {
+            background: white;
+        }
+        
+        .yellow {
+            background: var(--google-yellow-300);
+        }
+        
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .short {
+            padding-top: 12px;
+            height: 216px;
+        }
+        
+        .list {
+            padding-top: 12px;
+            background-color: white;
+            display: inline-block;
+            width: 280px;
+            height: 228px;
+            margin: 12px;
+            @apply(--shadow-elevation-2dp);
+        }
+        
+        paper-header-panel {
+            float: left;
+            width: 280px;
+            height: 500px;
+            margin: 12px;
+            @apply(--shadow-elevation-2dp);
+            background-color: white;
+        }
+        
+        .paper-header.medium-tall {
+            height: 100px;
+            line-height: 50px;
+        }
+        
+        .paper-header.medium-tall {
+            height: 100px;
+            line-height: 50px;
+        }
+        
+        .short {
+            padding-top: 12px;
+            height: 216px;
+        }
+        
+        h4 {
+            margin-left: 24px;
+        }
+        
+        .big-icon {
+            --iron-icon-height: 32px;
+            --iron-icon-width: 32px;
+        }
+        
+        paper-icon-button {
+            margin-left: 0px;
+            display: inline;
+            width: 24px;
+        }
+        
+        paper-icon-button.grey-hover:hover {
+            background: #D0D0D0;
+            /*linear-gradient(#D0D0D0, #ffecb3);*/
+            border-radius: 50%;
+        }
+        
+        .grey {
+            background: grey;
+        }
+        
+        .white {
+            background-color: white;
+            background: white;
+        }
+        
+        .red {
+            background-color: var(--paper-red-300);
+        }
+        
+        .orange {
+            background-color: var(--paper-amber-300);
+        }
+        
+        .green {
+            background-color: var(--paper-green-300);
+        }
+        
+        .card {
+            float: left;
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+            vertical-align: top;
+            background-color: #fff;
+            box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+        }
+        
+        .card-boilerplates {
+            height: 2000px;
+            position: relative;
+            box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+        }
+        
+        .item-boilerplates {
+            position: relative;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+            margin-left: 0px;
+        }
+        
+        .header-item-icons {
+            display: flex;
+            justify-content: flex-end;
+            vertical-align: text-top;
+        }
+        
+        .header-icon {
+            color: #F0F0F0;
+        }
+        
+        .bolierplate-icon {
+            color: #585858;
+        }
+        
+        .boilerplate-icon {
+            color: #707070;
+        }
+        
+        .header-item {
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-bottom: 12px;
+        }
+/* insert */
+
+        .paper-header.wide {
+            width: 100px;
+        }
+        
+        
+        paper-header-panel {
+            float: left;
+            width: 280px;
+            height: 500px;
+            /*height: 100%;*/
+            margin: 12px;
+            @apply(--shadow-elevation-2dp);
+        }
+        
+        .paper-header.medium-tall {
+            height: 100px;
+            line-height: 50px;
+        }
+        
+        paper-icon-button.grey-hover:hover {
+            background: linear-gradient(#D0D0D0, #ffecb3);
+            border-radius: 50%;
+        }
+        
+        .light-grey {
+            background: light-grey;
+        }
+        
+        .card-boilerplates {
+            /*height: 2000px;*/
+            height: 100%;
+            position: relative;
+            /*box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);*/
+        }
+        
+        .item-boilerplates {
+            position: relative;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+            margin-left: 0px;
+        }
+        
+        .insert-card {
+            width: 280px;
+            height: 80px;
+            margin: 0px;
+            padding: 0px;
+            background-color: var(--paper-light-blue-300);
+        }
+        
+        .list {
+            padding-top: 12px;
+            background-color: white;
+            color: white;
+            display: inline-block;
+            width: 240px;
+            height: 500%;
+            margin: 12px;
+            @apply(--shadow-elevation-2dp);
+        }
+        
+        .white {
+            background-color: white;
+        }
+        
+        .open-button {
+            background-color: #C8C8C8;
+        }
+
+
+
+
+    

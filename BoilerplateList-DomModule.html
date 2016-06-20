@@ -1,5 +1,4 @@
-<script src="bower_components//webcomponentsjs/webcomponents-lite.js">
-</script>
+<!-- script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script -->
 
 <link rel="import" href="bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="bower_components/iron-icons/iron-icons.html">
@@ -36,69 +35,34 @@
 
 <link rel="import" href="bower_components/neon-animation/animations/slide-from-left-animation.html">
 <link rel="import" href="bower_components/neon-animation/animations/slide-from-right-animation.html">
+<link rel="import" href="shared-styles.html">
 
 <script type="text/javascript" src="BoilerplateJS.js"></script>
 
 <dom-module id="boilerplate-list">
-  <style>
-    .card {
-      float: left;
-      position: relative;
-      display: inline-block;
-      width: 400px;
-      margin: 20px 20px 20px 20px;
-      vertical-align: top;
-      background-color: #fff;
-      box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
-    }
-    
-    .item {
-      position: relative;
-      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-    }
-    
-    .big-icon {
-      --iron-icon-height: 48px;
-      --iron-icon-width: 48px;
-    }
-    
-    .blue {
-      background-color: var(--paper-light-blue-300);
-    }
-    
-    .iron-selected {
-      background: #C8C8C8;
-    }
-    
-    paper-ripple {
-      color: grey;
-    }
-  </style>
+  <style include="shared-styles"></style>
   <template id="list-template">
-    <div class="card" id="list">
+    <div class="card" id="list" style="width:100%;">
+      <div class="paper-header">
+        <paper-icon-item>
+    	    <paper-fab mini class="green" icon="add" on-tap="add" item-icon></paper-fab>
+        </paper-icon-item>
+      </div>
+		
       <iron-selector>
         <template is="dom-repeat" id="listSelection" items="{{boilerplateSets}}">
           <div class="item" name='{{item.name}}' on-tap="_itemSelected">
-            <paper-icon-item>
+            <paper-item>
               <paper-item-body two-line>
                 <div>{{item.name}}</div>
                 <div secondary>{{item.description}}</div>
               </paper-item-body>
               <iron-icon class="big-icon" icon="hardware:keyboard-arrow-right"></iron-icon>
-            </paper-icon-item>
+            </paper-item>
             <paper-ripple></paper-ripple>
           </div>
         </template>
       </iron-selector>
-      <div class="item">
-        <paper-icon-item>
-          <paper-item-body two-line>
-            <div>Add</div>
-            <div secondary>Add a new set of Boilerplates</div>
-          </paper-item-body>
-          <paper-fab mini class="blue" icon="add" on-tap="add"></paper-fab>
-        </paper-icon-item>
-      </div>
     </div>
   </template>
 </dom-module>

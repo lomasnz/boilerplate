@@ -1,5 +1,4 @@
-<script src="bower_components//webcomponentsjs/webcomponents-lite.js">
-</script>
+<!-- script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script -->
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -23,10 +22,10 @@
 <dom-module id="boilerplate-component">
 
     <template>
-        <neon-animated-pages id="pages" selected="0" entry-aimation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
-            <boilerplate-list on-select="_onSelect" on-add="_onAdd"></boilerplate-list>
+        <neon-animated-pages id="pages" selected="2" entry-animation="[[entryAnimation]]" exit-animation="[[exitAnimation]]">
             <boilerplate-insert on-close="_onClose"></boilerplate-insert>
             <boilerplate-add on-close="_onClose"></boilerplate-add>
+            <boilerplate-list on-select="_onSelect" on-add="_onAdd"></boilerplate-list>
         </neon-animated-pages>
     </template>
 
@@ -39,19 +38,27 @@
             Polymer.NeonAnimationRunnerBehavior
         ],
         ready: function() {
-            this.entryAnimation = 'slide-from-left-animation';
-            this.exitAnimation = 'slide-right-animation';            
+            this.entryAnimation = 'slide-from-right-animation';
+            this.exitAnimation = 'slide-left-animation';            
         },
         _onClose: function() {
-            this.$.pages.selected = 0;
+            this.$.pages.selected = 2;
+            this.entryAnimation = 'slide-from-right-animation';
+            this.exitAnimation = 'slide-left-animation';            
+
         },
         _onSelect: function(e) {
             console.log('item detail :' + e);
-            this.$.pages.selected = 1;
+            this.$.pages.selected = 0;
+            this.entryAnimation = 'slide-from-left-animation';
+            this.exitAnimation = 'slide-right-animation';            
+
         },
         _onAdd: function() {
             console.log("adding");
-            this.$.pages.selected = 2;
+            this.$.pages.selected = 1;
+            this.entryAnimation = 'slide-from-left-animation';
+            this.exitAnimation = 'slide-right-animation';            
         }
     });
 </script>
