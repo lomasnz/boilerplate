@@ -1,2 +1,5 @@
 
-vulcanize Boilerplate-Index.html -o boilerplate-index.vulcanize.2.html --strip-comments --inline-scripts --inline-css
+vulcanize Boilerplate-Index.html --strip-comments --inline-scripts --inline-css > boilerplate-index.vulcanize.3.html
+
+polymer build --js-compile --js-minify --css-minify --html-minify --bundle  --entrypoint boilerplate-index.vulcanize.3.html
+

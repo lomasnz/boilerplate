@@ -1,87 +1,100 @@
-<script src="bower_components/webcomponentsjs/webcomponents-lite.js">
-</script>
-
+<link rel="import" href="bower_components/iron-iconset-svg/iron-iconset-svg.html">
+<link rel="import" href="bower_components/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="bower_components/paper-item/paper-item.html">
 <link rel="import" href="bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="bower_components/paper-toast/paper-toast.html">
+
+<link rel="import" href="bower_components/neon-animation/neon-animation-behavior.html">
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="bower_components/paper-styles/demo-pages.html">
+
+<!--
+<link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="bower_components/paper-item/paper-icon-item.html">
+
+
+<link rel="import" href="bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="bower_components/paper-ripple/paper-ripple.html">
 <link rel="import" href="bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="bower_components/iron-icons/communication-icons.html">
 <link rel="import" href="bower_components/iron-icons/hardware-icons.html">
-
 <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
 
-<link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
 
-<link rel="import" href="bower_components/paper-item/paper-icon-item.html">
-<link rel="import" href="bower_components/paper-item/paper-item.html">
-<link rel="import" href="bower_components/paper-item/paper-item-body.html">
 
-<link rel="import" href="bower_components/paper-styles/paper-styles.html">
-<link rel="import" href="bower_components/paper-styles/demo-pages.html">
 
-<link rel="import" href="bower_components/paper-ripple/paper-ripple.html">
-<link rel="import" href="bower_components/paper-header-panel/paper-header-panel.html">
 
-<link rel="import" href="bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="bower_components/paper-input/paper-input.html">
 <link rel="import" href="bower_components/paper-button/paper-button.html">
 <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="bower_components/paper-toast/paper-toast.html">
-<!--<link rel="import" href="bower_components/iron-pages/iron-pages.html">-->
 
-<link rel="import" href="bower_components/polymer/polymer.html">
 <link rel="import" href="bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
-<link rel="import" href="bower_components/neon-animation/neon-animation-behavior.html">
+
 <link rel="import" href="bower_components/neon-animation/web-animations.html">
 <link rel="import" href="bower_components/neon-animation/animations/slide-from-left-animation.html">
 <link rel="import" href="bower_components/neon-animation/animations/slide-from-right-animation.html">
-<link rel="import" href="bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="bower_components/iron-iconset-svg/iron-iconset-svg.html">
-<link rel="import" href="shared-styles.html">
-<script type="text/javascript" src="BoilerplateJS.js"></script>
+-->
 
 <iron-iconset-svg name="boilerplate" size="24">
     <svg>
         <defs>
             <g id="insertLeft" transform="rotate(180, 12.5, 12)">
-                <path d="m2.01,21l20.99,-9l-20.99,-9l-0.01,7l15,2l-15,2l0.01,7z" />
+                <path d="m2.01,21l20.99,-9l-20.99,-9l-0.01,7l15,2l-15,2l0.01,7z"></path>
             </g>
         </defs>
     </svg>
 </iron-iconset-svg>
 
-<dom-module id="boilerplate-insert">
+<dom-module id="boilerplate-insert" assetpath="/">
   <style include="shared-styles"></style>
+  <style is="custom-style">
+  paper-fab.red {
+    --paper-fab-background: var(--paper-red-500);
+    --paper-fab-keyboard-focus-background: var(--paper-red-900);
+  }
+  
+
+</style>
     <template>
+		
         <div id="insert">
 			
         <div id="head">
-            <paper-header-panel mode="waterfall-tall" tall-class="medium-tall" class="blue" style="margin: 0;">
-		      <div class="paper-header">
-				<paper-icon-item>
-					<paper-fab mini class="red" icon="hardware:keyboard-arrow-left" on-tap="_Close" item-icon></paper-fab>
-					 <paper-item-body two-line>
-						<div>{{name}}</div>
+            <paper-header-panel mode="waterfall-tall" tall-class="medium-tall" style="margin: 0;">
+		      <div class="paper-header" style="line-height:24px;">
+				  <div style="margin:16px;font-size:120%;line-height:16px;white-space:nowrap;">{{bpname}}</div>
+					
+					<paper-item-body two-line="" style="min-height:0">
 						<div class="secondary">
-						<table><tr><td>
-							<paper-fab mini class="green" icon="refresh" on-tap="_Refresh" item-icon alt="Refresh"></paper-fab>
-							</td></tr></table>
+						<iron-icon icon="arrow-back" on-tap="_Close" style="margin:8px;"></iron-icon>
+                        
 						</div>
 					  </paper-item-body>
-				</paper-icon-item>
+					  
+					<paper-item-body two-line="" style="min-height:0;margin-left:16px;padding-bottom:8px;">
+						Select boilerplate
+					</paper-item-body>
+					  
 			  </div>
-                            <div class="card-boilerplates white">
+			  </paper-header-panel>
+			  
+                            <div class="card-boilerplates">
                                 <iron-selector attr-for-selected="name">
                                     <template is="dom-repeat" id="listSelection" items="{{boilerplates}}">
-                                        <div class="item-boilerplates" on-tap="_itemSelected">
+                                        <div class="item-boilerplates" on-tap="_itemSelected" onmouseover="showButtons(this)" onmouseout="hideButtons(this)">
                                             <paper-item>
-                                                <paper-item-body two-line>
+                                                <paper-item-body two-line="">
                                                     <div>{{item.name}}</div>
-                                                    <div secondary>{{item.description}}</div>
+                                                    <div secondary="">{{item.description}}</div>
                                                 </paper-item-body>
-							<table><tr>
-							<td><paper-fab mini class="green" icon="open-in-new" on-tap="_OpenSet" item-icon alt="Open"></paper-fab></td>
-							<td><paper-fab mini class="green" icon="add" on-tap="_Insert" item-icon alt="Insert"></paper-fab></td>
-							<td><paper-fab mini class="green" icon="delete" on-tap="_Delete" item-icon alt="Delete"></paper-fab></td>
-							</tr></table>
+							<table style="display:none"><tbody><tr>
+							<td><paper-fab mini icon="add" mini on-tap="_Insert" alt="Insert" class="red" ></paper-fab></td>
+							<td><paper-fab mini icon="open-in-new" on-tap="_OpenSet" item-icon="" alt="Open" ></paper-fab></td>
+							</tr></tbody></table>
 
                                                 
                                             </paper-item>
@@ -90,7 +103,7 @@
                                     </template>
                                 </iron-selector>
                             </div>
-                        </paper-header-panel>
+                        
             <paper-toast id="toast" duration="10000">
                 <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" onclick="document.querySelector('#toast').hide();">DISSMISS</span>
             </paper-toast>
@@ -101,12 +114,81 @@
 </dom-module>
 
 <script>
+/*
+function getFunctionName( func ) {
+    var result = /^function\s+([\w\$]+)\s*\(/.exec( func.toString() )
+    return  result  ?  result[ 1 ]  :  '';
+}
+
+var google = {
+	script : {
+		run : {
+			versionNumber : 1,
+			
+			
+			withSuccessHandler : function(onInsertSuccess){
+				this.func = onInsertSuccess;
+				this.funcName = getFunctionName(onInsertSuccess);
+				return this;
+			},
+			withFailureHandler : function(onInsertFailure){
+				console.log("onInsertFailure " + onInsertFailure);
+				return this;
+			},
+			insertDocumentIntoCurrentLocation : function(url){
+				console.log("insertDocumentIntoCurrentLocation " + url);
+				return this;
+			},
+			getUserSets : function(){
+				console.log("getUserSets " + this.funcName);
+				this.func();
+			},
+			getMonitorUserSet : function(){
+				console.log("getMonitorUserSet " + this.funcName);
+				this.func(this.versionNumber);
+				this.versionNumber++;
+			},
+			addSelected : function(){
+				console.log("addSelected " + this.funcName) ;
+			},
+		}
+	}
+}
+*/
+var lastLocation;
+function showButtons(x) {
+  if (_boilerplateforSet.isRunning) {
+    return;
+  }
+  lastLocation = x;
+  $(x).find("table").show();
+}
+
+function hideButtons(x) {
+  lastLocation = x;
+  $(x).find("table").hide();
+}
+   
+    
+function insertBoilerplate(url) {
+  _boilerplateforSet.isRunning = true; 
+  google.script.run.withSuccessHandler(onInsertSuccess).withFailureHandler(onInsertFailure).insertDocumentIntoCurrentLocation(url);
+}
+
+function onInsertSuccess(response) {
+  _boilerplateforSet.isRunning = false; 
+}
+
+function onInsertFailure(error) {
+  _boilerplateforSet.isRunning = false; 
+}
+    
+	
     Polymer({
         is: 'boilerplate-insert',
-        name: String,
         ready: function() {
-            this.boilerplates = _retreieveBoilerplatesForSet('');
-            this.selectedBoilerplate = "Select";
+            _setBoilerplateforSet(this);
+            this.selectedBoilerplate = "";
             this.selectedFunction = "";
         },
         behaviors: [
@@ -114,40 +196,73 @@
         ],
 
         properties: {
-
+            bpname: {
+                type: String,
+                notify: true,
+                value: "name"
+            }, 
+            isRunning: {
+                type: Boolean,
+                notify: true,
+                observer:'_runningChanged',
+                value: false
+            },
+            boilerplates: {
+                type: String,
+                notify: true
+            }
         },
 
         _Close: function() {
-            console.log('close');
             this.fire('close');
+            this.boilerplates = '';
+            this.notifyPath('boilerplates', '');
+
+            _queryBoilerPlateSets();
         },
-        _OpenSet: function() {
-            console.log('open set');
+        _OpenSet: function(e,detail) {
             this.selectedFunction = "open";
+            var _selectedItem = this.$.listSelection.itemForElement(e.target);
+            
+            var win = window.open(_selectedItem.url, '_blank');
+            win.focus();
         },
-        _Refresh: function() {
-            console.log('refresh');
-            // this.fire('refresh');
+        _runningChanged: function(newValue, oldValue) {
+          if (newValue) {
+            hideButtons(lastLocation);
+            $("body").css('cursor', 'wait');
+          } else {
+            $("body").css('cursor', 'auto');
+          }
         },
-        _Delete: function() {
-            console.log('delete');
-            this.selectedFunction = "delete";
-        },
+        
         _Insert: function() {
-            console.log('insert');
             this.selectedFunction = "insert";
         },
+        
+        listeners: {
+          'insertComplete': 'insertComplete'
+        },
+        insertComplete: function(e,detail) {
+//          console.log('insert complete');
+        },
+        
         _itemSelected: function(e,detail) {
             var _selected = this.$.listSelection.itemForElement(e.target).name;
-            console.log("selected " +_selected + " " + this.selectedFunction);
+            var _selectedItem = this.$.listSelection.itemForElement(e.target);
+            
             this.selectedBoilerplate = _selected;
             
-          
-            this.$.toast.text = this.selectedFunction + " " + _selected;
-            this.$.toast.show();
+            if (typeof this.selectedFunction != 'undefined' && this.selectedFunction != "") {
             
-//            this.fire(this.selectedFunction);
-
-        },
+                if (this.selectedFunction == 'insert') {
+                  insertBoilerplate(_selectedItem.url);
+                }
+            
+				this.$.toast.text = this.selectedFunction + " " + _selected;
+				this.$.toast.show();
+				this.selectedFunction = "";
+			}
+        } 
     });
 </script>

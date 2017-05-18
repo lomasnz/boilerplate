@@ -18,6 +18,18 @@ function _retriveBoilerplateSets() {
     }];
     return result;
 }
+
+var _boilerplateSet;
+
+function _setBoilerplateSet(boilerplateSet) {
+	_boilerplateSet = boilerplateSet;
+}
+
+function _getBoilerplateSet() {
+	return _boilerplateSet;
+}
+
+
 /**
  * Function return json list of Bolierplates in a Boilerplate Set of the give setName passed.
  * Containig attributes

@@ -1,24 +1,62 @@
 <!-- shared-styles.html -->
 <dom-module id="shared-styles">
   <template>
+	  
+	  <style is="custom-style">
+  :root {
+    --dark-primary-color:       #1976D2;
+    --default-primary-color:    #2196F3;
+    --light-primary-color:      #BBDEFB;
+    --text-primary-color:       #FFFFFF;
+    --accent-color:             #03A9F4;
+    --primary-background-color: #BBDEFB;
+    --primary-text-color:       #212121;
+    --secondary-text-color:     #727272;
+    --disabled-text-color:      #BDBDBD;
+    --divider-color:            #B6B6B6;
+
+
+    /* Components */
+
+    /* paper-drawer-panel */
+    --drawer-menu-color:           #ffffff;
+    --drawer-border-color:         1px solid #ccc;
+    --drawer-toolbar-border-color: 1px solid rgba(0, 0, 0, 0.22);
+
+    /* paper-menu */
+    --paper-menu-background-color: #fff;
+    --menu-link-color:             #111111;
+
+    /* paper-input */
+   --paper-input-container-color:       rgba(255, 255, 255, 0.64);
+   --paper-input-container-focus-color: rgba(255, 255, 255, 1);
+   --paper-input-container-input-color: #fff;
+   
+  }
+</style>
+
+	  
     <style>
-          /* list */
+		
+	.boilerplate-insert-0 {
+		border-bottom: 1px solid var(--divider-color);
+		color: var(--primary-text-color);
+	}	
+		
+    /* list */
     
     .item {
       position: relative;
-      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-    }
-    
-    .blue {
-      background-color: var(--paper-light-blue-300);
+      /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1); */
+      border-bottom: 1px solid var(--divider-color);
     }
     
     .iron-selected {
-      background: #C8C8C8;
+      background: var(--divider-color);
     }
     
     paper-ripple {
-      color: grey;
+      color: var(--default-primary-color);
     }
     
     paper-heading {
@@ -34,25 +72,20 @@
             font: calibri;
             size: 10px;
             margin: 12px;
-            color: black;
+            color: var(--primary-text-color);
         }
         
         .paper-header {
             height: 60px;
             font-size: 16px;
             line-height: 60px;
-/*            padding: 0 10px; */
-            color: white;
+            background:var(--default-primary-color);
+            color: var(--text-primary-color);
             transition: height 0.2s;
         }
         
         .paper-header.tall {
             height: 120px;
-        }
-        
-        .paper-header.medium-tall {
-            height: 100px;
-            line-height: 50px;
         }
         
         .content {
@@ -64,34 +97,6 @@
             margin: 20px;
         }
         
-        .step {
-            float: top;
-            margin: -20px 10px 10px 10px;
-            color: black;
-        }
-        
-        .step-header {
-            float: top;
-            margin: -0px -10px 0px -10px;
-        }
-        
-        .step-number {
-            float: top;
-            margin: -60px 20px 20px 20px;
-            color: black;
-            text: roboto;
-            alignment-adjust: center;
-            size: 12;
-            z-index: 10 !important;
-        }
-        
-        .white {
-            background: white;
-        }
-        
-        .yellow {
-            background: var(--google-yellow-300);
-        }
         
         ul {
             list-style-type: none;
@@ -104,10 +109,12 @@
             height: 216px;
         }
         
+        
         .list {
             padding-top: 12px;
             background-color: white;
             display: inline-block;
+            color: var(--primary-text-color);
             width: 280px;
             height: 228px;
             margin: 12px;
@@ -115,28 +122,16 @@
         }
         
         paper-header-panel {
-            float: left;
-            width: 280px;
-            height: 500px;
+            width: 100%;
+            height: 108px;
             margin: 12px;
             @apply(--shadow-elevation-2dp);
-            background-color: white;
         }
         
         .paper-header.medium-tall {
-            height: 100px;
-            line-height: 50px;
+            height: 108px;
         }
         
-        .paper-header.medium-tall {
-            height: 100px;
-            line-height: 50px;
-        }
-        
-        .short {
-            padding-top: 12px;
-            height: 216px;
-        }icon
         
         h4 {
             margin-left: 24px;
@@ -154,52 +149,28 @@
         }
         
         paper-icon-button.grey-hover:hover {
-            background: #D0D0D0;
-            /*linear-gradient(#D0D0D0, #ffecb3);*/
+            background: var(--accent-color);
             border-radius: 50%;
-        }
-        
-        .grey {
-            background: grey;
-        }
-        
-        .white {
-            background-color: white;
-            background: white;
-        }
-        
-        .red {
-            background-color: var(--paper-red-300);
-        }
-        
-        .orange {
-            background-color: var(--paper-amber-300);
-        }
-        
-        .green {
-            background-color: var(--paper-green-300);
         }
         
         .card {
             float: left;
             position: relative;
             display: inline-block;
-/*            margin: 10px;
-            width: 100%;  */
             vertical-align: top;
-            background-color: #fff;
-            box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+            background-color: white;
+/*            box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24); */
         }
         
         .card-boilerplates {
-            height: 2000px;
+            height: 100%;
             position: relative;
             box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
         }
         
         .item-boilerplates {
             position: relative;
-            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+			border-bottom: 1px solid var(--divider-color);
             margin-left: 0px;
         }
         
@@ -210,15 +181,11 @@
         }
         
         .header-icon {
-            color: #F0F0F0;
-        }
-        
-        .bolierplate-icon {
-            color: #585858;
+            color: var(--accent-color);
         }
         
         .boilerplate-icon {
-            color: #707070;
+            color: var(--accent-color);
         }
         
         .header-item {
@@ -232,70 +199,14 @@
             width: 100px;
         }
         
-        
-        paper-header-panel {
-            float: left;
-            width: 100%;
-            height: 800px;
-            /*height: 100%;*/
-            margin: 12px;
-            @apply(--shadow-elevation-2dp);
-        }
-        
-        .paper-header.medium-tall {
-            height: 100px;
-            line-height: 50px;
-        }
-        
-        paper-icon-button.grey-hover:hover {
-            background: linear-gradient(#D0D0D0, #ffecb3);
-            border-radius: 50%;
-        }
-        
-        .light-grey {
-            background: light-grey;
-        }
-        
-        .card-boilerplates {
-            /*height: 2000px;*/
-            height: 100%;
-            position: relative;
-            /*box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);*/
-        }
-        
-        .item-boilerplates {
-            position: relative;
-            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-            margin-left: 0px;
-        }
-        
         .insert-card {
             width: 280px;
             height: 80px;
             margin: 0px;
             padding: 0px;
-            background-color: var(--paper-light-blue-300);
+            background-color: var(--divider-color);
         }
         
-        .list {
-            padding-top: 12px;
-            background-color: white;
-            color: white;
-            display: inline-block;
-            width: 240px;
-            height: 500%;
-            margin: 12px;
-            @apply(--shadow-elevation-2dp);
-        }
-        
-        .white {
-            background-color: white;
-        }
-        
-        .open-button {
-            background-color: #C8C8C8;
-        }
-
     </style>
   </template>
 </dom-module>
