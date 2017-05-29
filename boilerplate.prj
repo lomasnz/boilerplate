@@ -27,10 +27,7 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=5
-FILE_NAME_0=9536;HTML;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fboilerplate%2FBoilerplateList-DomModule.html;0;4
+current_page=2
+FILE_NAME_0=9170;HTML;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fboilerplate%2FBoilerplateList-DomModule.html;0;4
 FILE_NAME_1=6227;HTML;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fboilerplate%2FBoilerplateInsert-DomModule.html;0;4
-FILE_NAME_2=667;HTML;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fboilerplate%2FBoilerplateAdd-DomModule.html;0;4
-FILE_NAME_3=0;HTML;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fboilerplate%2Fapp-theme.html;0;4
-FILE_NAME_4=1669;HTML;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fboilerplate%2Fshared-styles.html;0;4
-FILE_NAME_5=0;HTML;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fboilerplate%2Fbuild%2Fdefault%2Fboilerplate-index.vulcanize.3.html;0;4
+FILE_NAME_2=1669;HTML;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fboilerplate%2Fshared-styles.html;0;4

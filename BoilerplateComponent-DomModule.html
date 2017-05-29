@@ -6,7 +6,7 @@
 
 <link rel="import" href="BoilerplateList-DomModule.html">
 <link rel="import" href="BoilerplateInsert-DomModule.html">
-<link rel="import" href="BoilerplateAdd-DomModule.html">
+<!-- link rel="import" href="BoilerplateAdd-DomModule.html" -->
 
 <link rel="import" href="bower_components/neon-animation/neon-animated-pages.html">
 <link rel="import" href="bower_components/neon-animation/neon-animatable.html">
@@ -49,10 +49,6 @@
 
         },
         _onSelect: function(e) {
-//            console.log('item detail :' + e);
-//            console.log('item detail :' + e.detail);
-//            console.log('item detail :' + e.detail.name);
-            
             document.querySelector('boilerplate-insert').name = e.detail.name;
             this.$.pages.selected = 0;
             this.entryAnimation = 'slide-from-left-animation';

@@ -6,52 +6,19 @@
 <link rel="import" href="bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="bower_components/paper-item/paper-item.html">
 <link rel="import" href="bower_components/paper-item/paper-item-body.html">
-
 <link rel="import" href="bower_components/neon-animation/neon-animation-behavior.html">
 <link rel="import" href="bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
-
-
 <link rel="import" href="bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="bower_components/iron-icons/hardware-icons.html">
-
 <link rel="import" href="bower_components/paper-styles/paper-styles.html">
 <link rel="import" href="bower_components/polymer/polymer.html">
 <link rel="import" href="bower_components/paper-styles/paper-styles.html">
-
 <link rel="import" href="bower_components/paper-progress/paper-progress.html">
-
-<!--
-
-<link rel="import" href="bower_components/iron-icons/communication-icons.html">
-
-
-<link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
-
-<link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
-
-<link rel="import" href="bower_components/paper-item/paper-icon-item.html">
-
-<link rel="import" href="bower_components/paper-styles/demo-pages.html">
-
-<link rel="import" href="bower_components/paper-ripple/paper-ripple.html">
-
-<link rel="import" href="bower_components/paper-input/paper-input.html">
-<link rel="import" href="bower_components/paper-button/paper-button.html">
-<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
-
-
-<link rel="import" href="bower_components/neon-animation/neon-shared-element-animatable-behavior.html">
-<link rel="import" href="bower_components/neon-animation/neon-animation-behavior.html">
-
-<link rel="import" href="bower_components/neon-animation/web-animations.html">
-
-<link rel="import" href="bower_components/neon-animation/animations/slide-from-left-animation.html">
-<link rel="import" href="bower_components/neon-animation/animations/slide-from-right-animation.html">
--->
 <link rel="import" href="shared-styles.html">
  
 
-<script type="text/javascript">// JavaScript File
+<script type="text/javascript">
+	
 // -- Custom intergration
 
 // the polymer boilerplate-list
@@ -86,7 +53,7 @@ function onGetSetsSuccess(response) {
   _boilerplateSet._changeLoading(false, "onGetSetsSuccess");
   
     if (_boilerplateSet.boilerplateSets.length == 0) {
-	 _boilerplateSet._add();
+	  _boilerplateSet._add();
   }
 }
 
@@ -204,31 +171,36 @@ function _retreieveBoilerplatesForSet(id, name, boilerplates) {
 </dom-module>
 
 <script>
+/**
+Monitor	- start
+*/
 
 var filePickerMonitor = null;
 
 function startMonitorVersionNumber() {
-  filePickerMonitor = setInterval(function(){ google.script.run.withSuccessHandler(setFilePickerMonitor).IsfilePickerAlive() }, 2000);
+  sessionStorage.loaded = 'loading'; 
+  filePickerMonitor = setInterval(setFilePickerMonitor, 300);
 }
 
-var pickerCounter = -1;
-function setFilePickerMonitor(response) {
-	var res = Boolean(response);
-  console.log("filepickermonitor alive=" + res);
-  pickerCounter++;
-  if (res) { 
-	  pickerCounter = 0;
-  } else {
-	  if (pickerCounter < 0) {
-		  // it takes some time to load so wait until it is seen befor counting down.
-	  } else if (pickerCounter > 1) {
-		  console.log("filepickermonitor is dead " + pickerCounter);
-		  clearInterval(filePickerMonitor);
-		  pickerCounter = -1;
-		  _queryBoilerPlateSets();
+function setFilePickerMonitor() {
+//  console.log('bp Storage loaded ' + sessionStorage.loaded); 
+	
+  if (sessionStorage.loaded == 'unload') { 
+//	  console.log("filepicker is dead ");
+	  clearInterval(filePickerMonitor);
+	  
+	  if (sessionStorage.action == 'picked') {
+		 _queryBoilerPlateSets();
+	  } else {
+		  onGetSetsSuccess(_boilerplateSet.boilerplateSets);
 	  }
   }
 }
+
+/**
+Monitor	- end
+*/
+
 
   var boilerplate_list_consumed = false; 
 
@@ -304,7 +276,7 @@ function setFilePickerMonitor(response) {
 		this._changeLoading(false);
 	},
 	_changeLoading : function (value, caller) {
-		console.log("loading " + this.loading + " n=" + value + ", caller="+caller);
+//		console.log("loading " + this.loading + " n=" + value + ", caller="+caller);
 		this.notifyPath('loading', value);
 	}
   });
