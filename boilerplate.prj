@@ -27,7 +27,10 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=2
-FILE_NAME_0=9170;HTML;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fboilerplate%2FBoilerplateList-DomModule.html;0;4
+current_page=7
+FILE_NAME_0=3205;HTML;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fboilerplate%2FBoilerplateList-DomModule.html;0;4
 FILE_NAME_1=6227;HTML;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fboilerplate%2FBoilerplateInsert-DomModule.html;0;4
 FILE_NAME_2=1669;HTML;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fboilerplate%2Fshared-styles.html;0;4
+FILE_NAME_3=0;HTML;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fboilerplate%2FBoilerplateComponent-DomModule.html;0;4
+FILE_NAME_4=1487;Javascript;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2Ftmp%2Fmimes.js;0;4
+FILE_NAME_5=859;None;0;EUTF-8;1;1;0;%2Fhome%2Fsmithb%2FSource%2FWinsource%2Fbvi%2Fhistorical-commands.txt;0;4

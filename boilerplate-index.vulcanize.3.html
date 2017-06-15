@@ -20442,13 +20442,13 @@ function _retreieveBoilerplatesForSet(id, name, boilerplates) {
             <div style="display:table;width:100%;height:70px;">
                <div style="display:table-row;vertical-align:middle;">
                  <div style="display:table-cell;width:14px;"></div>
-                 <div style="display:table-cell;overflow: hidden;width:80%;font-size:120%">User Boilerplate Sets</div>
+                 <div style="display:table-cell;overflow: hidden;width:80%;font-size:120%">Boilerplate Sets</div>
                   <div style="display:table-cell;vertical-align:middle;">
                      <paper-fab mini="" icon="add" on-tap="_add" alt="Add"></paper-fab>
                   </div>
                 </div>
               </div>
-			<div style="line-height:0px; margin:16px;">Select User Boilerplate set</div>
+			<div style="line-height:0px; margin:16px;">Select Boilerplate set</div>
 		</div>
 	</paper-header-panel>
 	
@@ -20456,7 +20456,7 @@ function _retreieveBoilerplatesForSet(id, name, boilerplates) {
 	<div class="card" id="list" style="width:100%;height:60px;">
 		<template is="dom-repeat" id="boiler_listSelection" items="{{boilerplateSets}}" as="itemlist">
 			<div>
-				<paper-header-panel style="margin-top:4px;margin-left:0px;margin-bottom:0px;height:60px;">
+				<paper-header-panel style="margin-top:0px;margin-left:0px;margin-bottom:0px;height:60px;">
 					<div class="paper-header light-heading" on-tap="_toggleCollapse">
                        <div style="display:table;width:100%">
                        <div style="display:table-row;vertical-align:middle;">
@@ -20475,7 +20475,7 @@ function _retreieveBoilerplatesForSet(id, name, boilerplates) {
 				<iron-collapse id="{{itemlist.title}}">
 					<iron-selector>
 						<template is="dom-repeat" id="listSelection" items="{{itemlist.boilerplateSet}}">
-							<div class="item" name="{{item.name}}" on-tap="_itemSelected">
+							<div class="item x-collapse" name="{{item.name}}" on-tap="_itemSelected">
 								<paper-item>
 									<paper-item-body two-line="">
 										<div>{{item.name}}</div>
@@ -22943,27 +22943,20 @@ within `fitInto` boundaries, while preserving the element's CSS margin values.
 		--paper-fab-background: var(--paper-red-500);
 		--paper-fab-keyboard-focus-background: var(--paper-red-900);
 	  }
+	  
+	  
+	  
+	  
   </style>
     <template>
 		
         <div id="insert">
 			
-        <div id="head">
-            <paper-header-panel mode="waterfall-tall" tall-class="medium-tall" style="margin: 0;">
-		      <div class="paper-header" style="line-height:24px;">
-				  <div style="margin:16px;font-size:120%;line-height:16px;white-space:nowrap;">{{bpname}}</div>
-					
-					<paper-item-body two-line="" style="min-height:0">
-						<div class="secondary">
-						<iron-icon icon="arrow-back" on-tap="_Close" style="margin:8px;"></iron-icon>
-                        
-						</div>
-					  </paper-item-body>
-					  
-					<paper-item-body two-line="" style="min-height:0;margin-left:16px;padding-bottom:8px;">
-						Select boilerplate
-					</paper-item-body>
-					  
+        <div id="head" style="width:300px;">
+            <paper-header-panel mode="waterfall-tall" tall-class="medium-tall" style="margin: 0;height:40px;" on-tap="_Close">
+		      <div class="paper-header" style="line-height:24px;height:40px;">
+				  <iron-icon icon="arrow-back" on-tap="_Close" style="margin:8px;vertical-align: top;"></iron-icon>
+				  <div style="display:inline-flex;width:260px;font-size:18px;margin-top:8px;white-space:nowrap;overflow: hidden; text-overflow: ellipsis;">{{bpname}}</div>
 			  </div>
 			  </paper-header-panel>
 			  

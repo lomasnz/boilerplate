@@ -29,27 +29,20 @@
 		--paper-fab-background: var(--paper-red-500);
 		--paper-fab-keyboard-focus-background: var(--paper-red-900);
 	  }
+	  
+	  
+	  
+	  
   </style>
     <template>
 		
         <div id="insert">
 			
-        <div id="head">
-            <paper-header-panel mode="waterfall-tall" tall-class="medium-tall" style="margin: 0;">
-		      <div class="paper-header" style="line-height:24px;">
-				  <div style="margin:16px;font-size:120%;line-height:16px;white-space:nowrap;">{{bpname}}</div>
-					
-					<paper-item-body two-line="" style="min-height:0">
-						<div class="secondary">
-						<iron-icon icon="arrow-back" on-tap="_Close" style="margin:8px;"></iron-icon>
-                        
-						</div>
-					  </paper-item-body>
-					  
-					<paper-item-body two-line="" style="min-height:0;margin-left:16px;padding-bottom:8px;">
-						Select boilerplate
-					</paper-item-body>
-					  
+        <div id="head" style="width:300px;">
+            <paper-header-panel mode="waterfall-tall" tall-class="medium-tall" style="margin: 0;height:40px;" on-tap="_Close" >
+		      <div class="paper-header" style="line-height:24px;height:40px;">
+				  <iron-icon icon="arrow-back" on-tap="_Close" style="margin:8px;vertical-align: top;"></iron-icon>
+				  <div style="display:inline-flex;width:260px;font-size:18px;margin-top:8px;white-space:nowrap;overflow: hidden; text-overflow: ellipsis;">{{bpname}}</div>
 			  </div>
 			  </paper-header-panel>
 			  
